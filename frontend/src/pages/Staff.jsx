@@ -1,4 +1,5 @@
 import React from 'react';
+import PageTransition from '../components/PageTransition';
 
 const Staff = () => {
     // Dummy data for staff
@@ -15,29 +16,31 @@ const Staff = () => {
 
     return (
         <React.Fragment>
-        <div className="py-12 bg-white min-h-screen">
-            <div className="container mx-auto px-4">
-                <h1 className="section-title">Staf Pengajar</h1>
-                <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-                    Berkenalan dengan tenaga pendidik profesional yang berdedikasi untuk membimbing siswa-siswi kami mencapai potensi terbaik mereka.
-                </p>
+        <PageTransition>
+            <div className="py-12 bg-white min-h-screen">
+                <div className="container mx-auto px-4">
+                    <h1 className="section-title">Staf Pengajar</h1>
+                    <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                        Berkenalan dengan tenaga pendidik profesional yang berdedikasi untuk membimbing siswa-siswi kami mencapai potensi terbaik mereka.
+                    </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {staff.map((person) => (
-                        <div key={person.id} className="text-center group">
-                            <div className="relative mb-4 inline-block overflow-hidden rounded-full border-4 border-gray-100 w-40 h-40">
-                                <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
-                                    {/* Placeholder for real image */}
-                                    User
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {staff.map((person) => (
+                            <div key={person.id} className="text-center group">
+                                <div className="relative mb-4 inline-block overflow-hidden rounded-full border-4 border-gray-100 w-40 h-40">
+                                    <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
+                                        {/* Placeholder for real image */}
+                                        User
+                                    </div>
                                 </div>
+                                <h3 className="text-lg font-bold text-primary-dark group-hover:text-primary transition-colors">{person.name}</h3>
+                                <p className="text-gray-500">{person.role}</p>
                             </div>
-                            <h3 className="text-lg font-bold text-primary-dark group-hover:text-primary transition-colors">{person.name}</h3>
-                            <p className="text-gray-500">{person.role}</p>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
+        </PageTransition>
         </React.Fragment>
     );
 };

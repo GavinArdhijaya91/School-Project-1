@@ -33,7 +33,7 @@ const Navbar = () => {
                                 <Link
                                     key={link.name}
                                     to={link.path}
-                                    className={`nav-link relative transition-colors duration-220 ${isActive(link.path) ? 'text-white font-bold' : 'text-gray-300'
+                                    className={`nav-link interactive-element relative transition-colors duration-220 ${isActive(link.path) ? 'text-white font-bold' : 'text-gray-300'
                                         }`}
                                 >
                                     {link.name}

@@ -45,17 +45,55 @@
   @apply border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-white;
 }
 
-/* Navbar hover animation - underline from left to right */
+/* Navbar hover animation - underline from left to right, exit to right */
 .nav-link::after {
   content: '';
-  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 ease-out;
+  @apply absolute bottom-0 right-0 w-0 h-0.5 bg-white transition-all duration-300 ease-out;
 }
 
 .nav-link:hover::after {
-  @apply w-full;
+  @apply left-0 right-auto w-full;
 }
 
 /* Active state for navbar links */
 .nav-link.active::after {
   @apply w-full;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.page-transition {
+  animation: fadeInScale 0.4s ease-out;
+}
+
+.page-transition-fast {
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.interactive-element {
+  @apply transition-transform duration-200 ease-out;
+}
+
+.interactive-element:active {
+  @apply scale-95;
 }
