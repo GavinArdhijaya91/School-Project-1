@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #455A64;
+  --color-primary-dark: #37474F;
+  --color-primary-light: #607D8B;
+  --color-secondary: #CFD8DC;
+  --color-background: #ECEFF1;
+  --color-surface: #FFFFFF;
+  --color-accent: #FF5722;
+  --color-text-main: #263238;
+  --color-text-secondary: #546E7A;
+  --font-family-sans: Inter, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text-main font-sans antialiased;
+  }
+}
+
+.section-title {
+  @apply text-3xl font-bold text-primary-dark text-center mb-8 relative pb-3;
+}
+
+.section-title::after {
+  content: '';
+  @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-accent;
+}
+
+/* membuat ulang button classes menggunakan apply untuk mencocokkan gaya sebelumnya jika diperlukan, 
+   atau kita bisa menggunakan kelas tailwind langsung di komponen.
+   Mari kita simpan mereka untuk kompatibilitas mundur dengan kode saya baru-baru ini. 
+*/
+
+.btn {
+  @apply inline-block px-5 py-2.5 rounded font-semibold cursor-pointer border-0 transition-colors duration-200;
+}
+
+.btn-primary {
+  @apply bg-primary text-white hover:bg-primary-dark;
+}
+
+.btn-outline {
+  @apply border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-white;
+}
+
+/* Navbar hover animation - underline from left to right */
+.nav-link::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 ease-out;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+/* Active state for navbar links */
+.nav-link.active::after {
+  @apply w-full;
+}
