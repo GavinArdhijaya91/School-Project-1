@@ -1,19 +1,34 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, School } from 'lucide-react';
+import { School } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const location = useLocation();
 
     const navLinks = [
-        { name: 'Home', path: '/' },
-        { name: 'Artikel', path: '/articles' },
-        { name: 'Staf Pengajar', path: '/staff' },
-        { name: 'Program Sekolah', path: '/programs' },
+        { name: 'Beranda', path: '#beranda' },
+        { name: 'Artikel', path: '#articles' },
+        { name: 'Program Sekolah', path: '#programs' },
+        { name: 'Staf Pengajar', path: '#staff' },
     ];
 
-    const isActive = (path) => location.pathname === path;
+    const handleClick = (e, path) => {
+        e.preventDefault();
+        setIsOpen(false);
+
+
+        const element = document.querySelector(path);
+        if (element) {
+            const offset = 60; 
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     return (
         <React.Fragment>
@@ -22,22 +37,23 @@ const Navbar = () => {
                     <div className="flex justify-between items-center h-16">
 
                         {/* Logo */}
-                        <Link to="/" className="flex items-center space-x-2">
-                            <School size={32} />
-                            <span className="font-bold text-xl tracking-tight">SMA NEGERI 1 JELITA</span>
-                        </Link>
+                        <a href="#beranda" onClick={(e) => handleClick(e, '#beranda')} className="flex items-center space-x-2">
+                                <img src="../public/SMA Negeri 1 Jelita (2).png" alt="Logo" className="w-18 h-18"/>
+                                <span className="font-semibold text-lg
+                                " style={{fontFamily: 'Inter, sans-serif'}}>SMA NEGERI 1 JELITA</span>
+                        </a>
 
                         {/* Menu Desktop */}
                         <div className="hidden md:flex space-x-8">
                             {navLinks.map((link) => (
-                                <Link
+                                <a
                                     key={link.name}
-                                    to={link.path}
-                                    className={`nav-link interactive-element relative transition-colors duration-220 ${isActive(link.path) ? 'text-white font-bold' : 'text-gray-300'
-                                        }`}
+                                    href={link.path}
+                                    onClick={(e) => handleClick(e, link.path)}
+                                    className={`nav-link interactive-element relative transition-colors duration-220 ${link.name === 'Beranda' ? 'text-white' : 'text-gray-400 hover:text-white'}`}
                                 >
-                                    {link.name}
-                                </Link>
+                                    {link.name === 'Beranda' ? 'Beranda' : link.name}
+                               </a>
                             ))}
                         </div>
 
@@ -53,15 +69,14 @@ const Navbar = () => {
                     {isOpen && (
                         <div className="md:hidden pb-4">
                             {navLinks.map((link) => (
-                                <Link
+                                <a
                                     key={link.name}
-                                    to={link.path}
-                                    onClick={() => setIsOpen(false)}
-                                    className={`block py-2 px-4 text-sm hover:bg-primary-dark ${isActive(link.path) ? 'bg-primary-dark font-bold' : ''
-                                        }`}
+                                    href={link.path}
+                                    onClick={(e) => handleClick(e, link.path)}
+                                    className="block py-2 px-4 text-sm hover:bg-primary-dark"
                                 >
                                     {link.name}
-                                </Link>
+                                </a>
                             ))}
                         </div>
                     )}
