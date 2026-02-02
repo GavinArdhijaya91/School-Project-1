@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { School } from 'lucide-react';
-import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +6,7 @@ const Navbar = () => {
     const navLinks = [
         { name: 'Beranda', path: '#beranda' },
         { name: 'Artikel', path: '#articles' },
-        { name: 'Program Sekolah', path: '#programs' },
+        { name: 'Program', path: '#programs' },
         { name: 'Staf Pengajar', path: '#staff' },
     ];
 
@@ -19,7 +17,7 @@ const Navbar = () => {
 
         const element = document.querySelector(path);
         if (element) {
-            const offset = 60; 
+            const offset = 60;
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -38,9 +36,9 @@ const Navbar = () => {
 
                         {/* Logo */}
                         <a href="#beranda" onClick={(e) => handleClick(e, '#beranda')} className="flex items-center space-x-2">
-                                <img src="../public/SMA Negeri 1 Jelita (2).png" alt="Logo" className="w-18 h-18"/>
-                                <span className="font-semibold text-lg
-                                " style={{fontFamily: 'Inter, sans-serif'}}>SMA NEGERI 1 JELITA</span>
+                            <img src="../public/SMA Negeri 1 Jelita (2).png" alt="Logo" className="w-15 h-15" />
+                            <span className="font-semibold text-lg
+                                " style={{ fontFamily: 'Inter, sans-serif' }}>SMAN 1 JELITA</span>
                         </a>
 
                         {/* Menu Desktop */}
@@ -53,27 +51,35 @@ const Navbar = () => {
                                     className={`nav-link interactive-element relative transition-colors duration-220 ${link.name === 'Beranda' ? 'text-white' : 'text-gray-400 hover:text-white'}`}
                                 >
                                     {link.name === 'Beranda' ? 'Beranda' : link.name}
-                               </a>
+                                </a>
                             ))}
                         </div>
 
                         {/* Tombol Mobile Menu */}
                         <div className="md:hidden flex items-center">
-                            <button onClick={() => setIsOpen(!isOpen)} className="text-white focus:outline-none">
-                                {isOpen ? <X size={24} /> : <Menu size={24} />}
+                            <button
+                                onClick={() => setIsOpen(!isOpen)}
+                                className="text-white focus:outline-none p-2"
+                                aria-label="Toggle menu"
+                            >
+                                <div className={`hamburger ${isOpen ? 'hamburger-open' : ''}`}>
+                                    <span className="hamburger-line"></span>
+                                    <span className="hamburger-line"></span>
+                                    <span className="hamburger-line"></span>
+                                </div>
                             </button>
                         </div>
                     </div>
 
                     {/* Menu Mobile */}
                     {isOpen && (
-                        <div className="md:hidden pb-4">
+                        <div className="md:hidden pb-4 mobile-menu mobile-menu-enter">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.name}
                                     href={link.path}
                                     onClick={(e) => handleClick(e, link.path)}
-                                    className="block py-2 px-4 text-sm hover:bg-primary-dark"
+                                    className="block py-2 px-4 text-sm hover:bg-primary-dark transition-colors"
                                 >
                                     {link.name}
                                 </a>

@@ -6,17 +6,6 @@ Semua gambar artikel harus ditempatkan di folder:
 frontend/resources/artikel-image/
 ```
 
-## Nama File yang Dibutuhkan
-
-Saat ini, sistem membutuhkan 6 gambar artikel dengan nama file sebagai berikut:
-
-1. **olimpiade-sains.jpg** - Untuk artikel "Prestasi Siswa di Olimpiade Sains"
-2. **ppdb.jpg** - Untuk artikel "Penerimaan Peserta Didik Baru"
-3. **bakti-sosial.jpg** - Untuk artikel "Kegiatan Bakti Sosial OSIS"
-4. **workshop-robotik.jpg** - Untuk artikel "Workshop Robotik"
-5. **lomba-kebersihan.jpg** - Untuk artikel "Lomba Kebersihan Kelas"
-6. **seminar-pt.jpg** - Untuk artikel "Seminar Perguruan Tinggi"
-
 ## Format Gambar yang Disarankan
 
 - **Format**: JPG, PNG, atau WebP
@@ -41,6 +30,7 @@ Jika gambar tidak ditemukan, sistem akan menampilkan:
 
 Untuk menambahkan artikel baru dengan gambar, edit file `Home.jsx`:
 
+seperti:
 ```javascript
 const articles = [
     // ... artikel lain
