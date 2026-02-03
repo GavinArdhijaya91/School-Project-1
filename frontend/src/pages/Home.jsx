@@ -1,22 +1,86 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ChevronRight, Award, Users, BookOpen, Book, Trophy, Music, PenTool, Heart } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
 import ArticleModal from '../components/Article';
 import StatCard from '../components/StatCard';
 import TypeWriter from '../components/TypeWriter';
-
-
+import ArticleSearch from '../components/ArticleSearch';
+import ArticleFilter from '../components/ArticleFilter';
+import ImageCarousel from '../components/ImageCarousel';
+import Testimonial from '../components/Testimonial';
+import ContactForm from '../components/ContactForm';
+import MapSection from '../components/MapSection';
 
 const Home = () => {
     const [selectedArticle, setSelectedArticle] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [activeCategory, setActiveCategory] = useState('all');
+
+    // Gallery images for carousel
+    const galleryImages = [
+        {
+            src: '../resources/home-image/Gedung-Kelas-Ikhwan-scaled.webp',
+            alt: 'Gedung Sekolah',
+            title: 'Gedung Sekolah Modern',
+            description: 'Fasilitas belajar yang nyaman dan lengkap'
+        },
+        {
+            src: '../resources/artikel-image/olimpiade-sains.jpg',
+            alt: 'Prestasi Siswa',
+            title: 'Prestasi Gemilang',
+            description: 'Siswa berprestasi di tingkat nasional'
+        },
+        {
+            src: '../resources/artikel-image/workshop-robotik.jpg',
+            alt: 'Workshop Robotik',
+            title: 'Inovasi Teknologi',
+            description: 'Mengembangkan kreativitas melalui teknologi'
+        },
+    ];
+
+    // Testimonials
+    const testimonials = [
+        {
+            id: 1,
+            name: 'Sarah Putri',
+            role: 'Alumni 2024 - Mahasiswa UI',
+            image: null,
+            content: 'SMA Negeri 1 Jelita memberikan fondasi yang kuat untuk masa depan saya. Guru-guru yang berdedikasi dan fasilitas yang lengkap membuat saya siap menghadapi tantangan di perguruan tinggi.',
+            rating: 5
+        },
+        {
+            id: 2,
+            name: 'Ahmad Rizki',
+            role: 'Siswa Kelas XII MIPA',
+            image: null,
+            content: 'Ekstrakurikuler yang beragam dan program akademik yang berkualitas membantu saya mengembangkan bakat dan minat. Saya bangga menjadi bagian dari keluarga besar SMAN 1 Jelita.',
+            rating: 5
+        },
+        {
+            id: 3,
+            name: 'Dewi Lestari',
+            role: 'Orang Tua Siswa',
+            image: null,
+            content: 'Sebagai orang tua, saya sangat puas dengan perkembangan anak saya di sekolah ini. Komunikasi yang baik antara sekolah dan orang tua membuat saya tenang dan percaya.',
+            rating: 5
+        },
+    ];
+
+    // Article categories
+    const categories = [
+        { id: 'prestasi', name: 'Prestasi', count: 2 },
+        { id: 'kegiatan', name: 'Kegiatan', count: 3 },
+        { id: 'informasi', name: 'Informasi', count: 1 },
+    ];
 
     const articles = [
         {
             id: 1,
             title: 'Prestasi Siswa di Olimpiade Sains',
             date: '30 Des 2025',
+            category: 'prestasi',
             excerpt: 'Siswa kami berhasil meraih medali emas dalam kompetisi tingkat nasional...',
             image: '../resources/artikel-image/olimpiade-sains.jpg',
             content: `SMA Negeri 1 Jelita kembali mengukir prestasi membanggakan di ajang Olimpiade Sains Nasional (OSN) 2025. Tim siswa kami berhasil meraih medali emas dalam kategori Biologi dan medali perak dalam kategori Fisika.
@@ -28,6 +92,7 @@ const Home = () => {
             id: 2,
             title: 'Penerimaan Peserta Didik Baru',
             date: '28 Nov 2025',
+            category: 'informasi',
             excerpt: 'Informasi lengkap mengenai jadwal dan persyaratan PPDB tahun ajaran ini...',
             image: '../resources/artikel-image/ppdb.jpg',
             content: `SMA Negeri 1 Jelita membuka pendaftaran Penerimaan Peserta Didik Baru (PPDB) untuk tahun ajaran 2026/2027. Pendaftaran akan dibuka mulai tanggal 1 Januari 2026 hingga 15 Januari 2026.
@@ -40,6 +105,7 @@ const Home = () => {
             id: 3,
             title: 'Kegiatan Bakti Sosial OSIS',
             date: '10 Okt 2025',
+            category: 'kegiatan',
             excerpt: 'OSIS mengadakan bakti sosial ke panti asuhan sebagai bentuk kepedulian...',
             image: '../resources/artikel-image/bakti-sosial.jpg',
             content: `Organisasi Siswa Intra Sekolah (OSIS) SMA Negeri 1 Jelita mengadakan kegiatan bakti sosial ke Panti Asuhan Kasih Sayang pada hari Minggu, 8 Oktober 2025. Kegiatan ini diikuti oleh 50 siswa pengurus OSIS dan anggota MPK.
@@ -51,6 +117,7 @@ const Home = () => {
             id: 4,
             title: 'Workshop Robotik',
             date: '05 Okt 2025',
+            category: 'kegiatan',
             excerpt: 'Mengembangkan kreativitas siswa melalui teknologi robotika terkini...',
             image: '../resources/artikel-image/workshop-robotik.jpg',
             content: `SMA Negeri 1 Jelita mengadakan Workshop Robotik yang diikuti oleh 40 siswa dari kelas X dan XI jurusan MIPA. Workshop ini berlangsung selama tiga hari, dari tanggal 3-5 Oktober 2025, di Laboratorium Komputer sekolah.
@@ -62,6 +129,7 @@ const Home = () => {
             id: 5,
             title: 'Lomba Kebersihan Kelas',
             date: '01 Okt 2025',
+            category: 'kegiatan',
             excerpt: 'Meningkatkan kesadaran akan pentingnya lingkungan belajar yang bersih...',
             image: '../resources/artikel-image/lomba-kebersihan.jpg',
             content: `Dalam rangka memperingati Hari Kesehatan Nasional, SMA Negeri 1 Jelita mengadakan Lomba Kebersihan Kelas yang diikuti oleh seluruh kelas dari tingkat X hingga XII. Lomba ini berlangsung selama satu minggu penuh dengan penilaian yang dilakukan setiap hari.
@@ -73,6 +141,7 @@ const Home = () => {
             id: 6,
             title: 'Seminar Perguruan Tinggi',
             date: '28 Sep 2025',
+            category: 'prestasi',
             excerpt: 'Mempersiapkan siswa kelas XII untuk melanjutkan ke jenjang pendidikan tinggi...',
             image: '../resources/artikel-image/seminar-pt.jpg',
             content: `SMA Negeri 1 Jelita mengadakan Seminar Perguruan Tinggi yang dihadiri oleh seluruh siswa kelas XII. Acara ini menghadirkan perwakilan dari berbagai universitas ternama di Indonesia seperti UI, ITB, UGM, dan ITS.
@@ -198,6 +267,14 @@ const Home = () => {
         },
     ];
 
+    const filteredArticles = useMemo(() => {
+        return articles.filter(article => {
+            const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                article.content.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesCategory = activeCategory === 'all' || article.category === activeCategory;
+            return matchesSearch && matchesCategory;
+        });
+    }, [articles, searchTerm, activeCategory]);
 
     const handleOpenArticle = (article) => {
         setSelectedArticle(article);
@@ -249,31 +326,42 @@ const Home = () => {
                         </div>
                     </section>
 
+                     {/* Bagian Kumpulan Galeri */}
+                    <section className="py-16 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+                        <div className="container mx-auto px-4">
+                            <h2 className="section-title" style={{color: 'white'}}>Galeri Sekolah</h2>
+                            <p className="text-center text-white-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
+                                Lihat fasilitas dan kegiatan di SMA Negeri 1 Jelita
+                            </p>
+                            <ImageCarousel images={galleryImages} />
+                        </div>
+                    </section>
+
                     {/* Bagian Fitur */}
-                    <section className="py-16 bg-white">
+                    <section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
                         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                            <div className="p-6 rounded-lg shadow-md border hover:shadow-lg transition-shadow">
-                                <Award size={48} className="text-primary mx-auto mb-4" />
-                                <h3 className="text-xl font-bold mb-2">Akreditasi A</h3>
-                                <p className="text-gray-600">Terakreditasi A dengan standar pendidikan berkualitas tinggi.</p>
+                            <div className="p-6 rounded-lg shadow-md border dark:border-gray-700 hover:shadow-lg transition-shadow card-hover">
+                                <Award size={48} className="text-primary dark:text-primary-light mx-auto mb-4" />
+                                <h3 className="text-xl font-bold mb-2 dark:text-white">Akreditasi A</h3>
+                                <p className="text-gray-600 dark:text-gray-400">Terakreditasi A dengan standar pendidikan berkualitas tinggi.</p>
                             </div>
-                            <div className="p-6 rounded-lg shadow-md border hover:shadow-lg transition-shadow">
-                                <Users size={48} className="text-primary mx-auto mb-4" />
-                                <h3 className="text-xl font-bold mb-2">Guru Profesional</h3>
-                                <p className="text-gray-600">Dididik oleh tenaga pengajar berpengalaman dan tersertifikasi.</p>
+                            <div className="p-6 rounded-lg shadow-md border dark:border-gray-700 hover:shadow-lg transition-shadow card-hover">
+                                <Users size={48} className="text-primary dark:text-primary-light mx-auto mb-4" />
+                                <h3 className="text-xl font-bold mb-2 dark:text-white">Guru Profesional</h3>
+                                <p className="text-gray-600 dark:text-gray-400">Dididik oleh tenaga pengajar berpengalaman dan tersertifikasi.</p>
                             </div>
-                            <div className="p-6 rounded-lg shadow-md border hover:shadow-lg transition-shadow">
-                                <BookOpen size={48} className="text-primary mx-auto mb-4" />
-                                <h3 className="text-xl font-bold mb-2">Kurikulum Merdeka</h3>
-                                <p className="text-gray-600">Menerapkan kurikulum terbaru untuk pengembangan minat siswa.</p>
+                            <div className="p-6 rounded-lg shadow-md border dark:border-gray-700 hover:shadow-lg transition-shadow card-hover">
+                                <BookOpen size={48} className="text-primary dark:text-primary-light mx-auto mb-4" />
+                                <h3 className="text-xl font-bold mb-2 dark:text-white">Kurikulum Merdeka</h3>
+                                <p className="text-gray-600 dark:text-gray-400">Menerapkan kurikulum terbaru untuk pengembangan minat siswa.</p>
                             </div>
                         </div>
                     </section>
 
                     {/* Bagian Statistik */}
-                    <section className="py-20 bg-white">
+                    <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
                         <div className="container mx-auto px-4">
-                            <h2 className="text-3xl md:text-4xl font-bold text-center text-primary-dark mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-12">
                                 SMA Negeri 1 Jelita Saat Ini
                             </h2>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -304,56 +392,107 @@ const Home = () => {
                     </section>
 
                     {/* Bagian Artikel */}
-                    <section id="articles" className="py-16 bg-gray-50">
+                    <section id="articles" className="py-16 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+                        <div className="container mx-auto px-4 text-white">
+                            <h2 className="section-title text-white" style={{ color: 'white' }}>Artikel & Berita</h2>
+
+                            {/* Pencarian dan Filter */}
+                            <ArticleSearch onSearch={setSearchTerm} />
+                            <ArticleFilter
+                                categories={categories}
+                                activeCategory={activeCategory}
+                                onFilterChange={setActiveCategory}
+                            />
+
+                            {/* Grid Artikel */}
+                            {filteredArticles.length > 0 ? (
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                    {filteredArticles.map((article, index) => (
+                                        <ScrollReveal key={article.id} delay={index * 100} direction="up">
+                                            <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col card-hover">
+                                                <div className="h-48 w-full overflow-hidden bg-gradient-to-br from-primary to-primary-light">
+                                                    <img
+                                                        src={article.image}
+                                                        alt={article.title}
+                                                        className="w-full h-full object-cover"
+                                                        onError={(e) => {
+                                                            e.target.style.display = 'none';
+                                                            e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>`;
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div className="p-6 flex-1 flex flex-col">
+                                                    <span className="text-sm text-gray-500 dark:text-gray-400 block mb-2">{article.date}</span>
+                                                    <h2 className="text-xl font-bold mb-3 text-primary-dark dark:text-white">{article.title}</h2>
+                                                    <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1">{article.excerpt}</p>
+                                                    <button
+                                                        onClick={() => handleOpenArticle(article)}
+                                                        className="text-primary dark:text-primary-light font-semibold hover:text-primary-dark dark:hover:text-accent interactive-element"
+                                                    >
+                                                        Baca Selengkapnya &rarr;
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </ScrollReveal>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="text-center py-12">
+                                    <p className="text-gray-500 dark:text-gray-400 text-lg">Tidak ada artikel yang ditemukan.</p>
+                                </div>
+                            )}
+
+                        </div>
+                    </section>
+
+                    {/* Bagian Testimoni */}
+                    <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
                         <div className="container mx-auto px-4">
-                            <h2 className="section-title">Artikel & Berita</h2>
+                            <h2 className="section-title" style={{color: 'white'}}>Testimoni</h2>
+                            <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+                                Apa kata mereka tentang SMA Negeri 1 Jelita
+                            </p>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {articles.map((article, index) => (
-                                    <ScrollReveal key={article.id} delay={index * 100} direction="up">
-                                        <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
-                                            <div className="h-48 w-full overflow-hidden bg-gradient-to-br from-primary to-primary-light">
-                                                <img
-                                                    src={article.image}
-                                                    alt={article.title}
-                                                    className="w-full h-full object-cover"
-                                                    onError={(e) => {
-                                                        e.target.style.display = 'none';
-                                                        e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>`;
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="p-6 flex-1 flex flex-col">
-                                                <span className="text-sm text-gray-500 block mb-2">{article.date}</span>
-                                                <h2 className="text-xl font-bold mb-3 text-primary-dark">{article.title}</h2>
-                                                <p className="text-gray-600 mb-4 flex-1">{article.excerpt}</p>
-                                                <button
-                                                    onClick={() => handleOpenArticle(article)}
-                                                    className="text-primary font-semibold hover:text-primary-dark interactive-element"
-                                                >
-                                                    Baca Selengkapnya &rarr;
-                                                </button>
-                                            </div>
-                                        </div>
+                                {testimonials.map((testimonial, index) => (
+                                    <ScrollReveal key={testimonial.id} delay={index * 150} direction="up">
+                                        <Testimonial testimonial={testimonial} />
                                     </ScrollReveal>
                                 ))}
                             </div>
+                        </div>
+                    </section>
 
+                    {/* Bagian Kontak */}
+                    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+                        <div className="container mx-auto px-4">
+                            <h2 className="section-title" style={{color: 'white'}}>Hubungi Kami</h2>
+                            <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+                                Ada pertanyaan? Jangan ragu untuk menghubungi kami
+                            </p>
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <ScrollReveal delay={0} direction="left">
+                                    <ContactForm />
+                                </ScrollReveal>
+                                <ScrollReveal delay={200} direction="right">
+                                    <MapSection />
+                                </ScrollReveal>
+                            </div>
                         </div>
                     </section>
 
 
                     {/* Bagian Program */}
-                    <section id="programs" className="py-16 bg-white">
+                    <section id="programs" className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
                         <div className="container mx-auto px-4">
                             {/* Akademik */}
                             <div className="mb-20">
-                                <h2 className="section-title">Program Akademik</h2>
+                                <h2 className="section-title" style={{color: 'white'}}>Program Akademik</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                     {academics.map((prog, index) => (
                                         <ScrollReveal key={prog.id} delay={index * 150} direction="up">
-                                            <div className="bg-white p-8 rounded-lg shadow border-l-4 border-primary hover:translate-y-[-5px] transition-transform">
-                                                <h3 className="text-xl font-bold mb-3 text-primary-dark">{prog.title}</h3>
-                                                <p className="text-gray-600">{prog.desc}</p>
+                                            <div className="bg-white dark:bg-gray-700 p-8 rounded-lg shadow border-l-4 border-primary dark:border-primary-light hover:translate-y-[-5px] transition-transform card-hover">
+                                                <h3 className="text-xl font-bold mb-3 text-primary-dark dark:text-white">{prog.title}</h3>
+                                                <p className="text-gray-600 dark:text-gray-300">{prog.desc}</p>
                                             </div>
                                         </ScrollReveal>
                                     ))}
@@ -362,13 +501,13 @@ const Home = () => {
 
                             {/* Ekstrakurikuler */}
                             <div>
-                                <h2 className="section-title">Ekstrakurikuler</h2>
-                                <p className="text-center text-gray-600 mb-10">Wadah pengembangan bakat dan minat siswa di luar jam pelajaran.</p>
+                                <h2 className="section-title" style={{color: 'white'}}>Ekstrakurikuler</h2>
+                                <p className="text-center text-gray-600 dark:text-gray-400 mb-10">Wadah pengembangan bakat dan minat siswa di luar jam pelajaran.</p>
                                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                                     {extracurriculars.map((ex, index) => (
                                         <ScrollReveal key={ex.id} delay={index * 80} direction="up">
-                                            <div className="bg-white p-6 rounded-lg shadow text-center hover:bg-primary hover:text-white transition-colors group cursor-pointer interactive-element">
-                                                <div className="mb-3 text-primary group-hover:text-white inline-block">
+                                            <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow text-center hover:bg-primary dark:hover:bg-primary-light hover:text-white transition-colors group cursor-pointer interactive-element">
+                                                <div className="mb-3 text-primary dark:text-primary-light group-hover:text-white inline-block">
                                                     {ex.icon}
                                                 </div>
                                                 <h4 className="font-semibold">{ex.title}</h4>
@@ -380,81 +519,39 @@ const Home = () => {
                         </div>
                     </section>
 
-                    {/* Bagian Staf */}
-                    <section id="staff" className="py-20 bg-gray-50">
+                    {/* Bagian Staf Pengajar */}
+                    <section id="staff" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
                         <div className="container mx-auto px-4">
-                            <h2 className="section-title mb-4">Staf Pengajar</h2>
-                            <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-                                Berkenalan dengan tenaga pendidik profesional yang berdedikasi untuk membimbing siswa-siswi kami mencapai potensi terbaik mereka.
-                            </p>
-
-                            {/* Kepala Sekolah */}
-                            <div className="flex justify-center mb-12">
-                                {staff.filter(person => person.role === 'Kepala Sekolah').map((person) => (
-                                    <ScrollReveal key={person.id} delay={0} direction="up">
-                                        <div className="text-center group">
-                                            <div className="relative mb-6 inline-block overflow-hidden rounded-full border-4 border-primary w-48 h-48">
+                            <h2 className="section-title" style={{color: 'white'}}>Staf Pengajar</h2>
+                            <p className="text-center text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">Tenaga pendidik profesional dan berpengalaman yang siap membimbing siswa.</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                {staff.map((staffMember, index) => (
+                                    <ScrollReveal key={staffMember.id} delay={index * 100} direction="up">
+                                        <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow text-center card-hover">
+                                            <div className="h-64 w-full overflow-hidden bg-gradient-to-br from-primary to-primary-light">
                                                 <img
-                                                    src={person.image}
-                                                    alt={person.name}
+                                                    src={staffMember.image}
+                                                    alt={staffMember.name}
                                                     className="w-full h-full object-cover"
-                                                    style={{ objectPosition: 'center 20%' }}
+                                                    onError={(e) => {
+                                                        e.target.style.display = 'none';
+                                                        e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>`;
+                                                    }}
                                                 />
                                             </div>
-                                            <h3 className="text-xl font-bold text-primary-dark group-hover:text-primary transition-colors mb-2">{person.name}</h3>
-                                            <p className="text-gray-600 font-semibold">{person.role}</p>
+                                            <div className="p-6">
+                                                <h3 className="text-xl font-bold text-primary-dark dark:text-white mb-2">{staffMember.name}</h3>
+                                                <p className="text-gray-600 dark:text-gray-300">{staffMember.role}</p>
+                                            </div>
                                         </div>
                                     </ScrollReveal>
                                 ))}
-                            </div>
-
-                            {/* Wakil Kurikulum */}
-                            <div className="flex justify-center mb-16">
-                                {staff.filter(person => person.role === 'Wakil Kurikulum').map((person) => (
-                                    <ScrollReveal key={person.id} delay={100} direction="up">
-                                        <div className="text-center group">
-                                            <div className="relative mb-6 inline-block overflow-hidden rounded-full border-4 border-gray-100 w-44 h-44">
-                                                <img
-                                                    src={person.image}
-                                                    alt={person.name}
-                                                    className="w-full h-full object-cover"
-                                                    style={{ objectPosition: 'center 20%' }}
-                                                />
-                                            </div>
-                                            <h3 className="text-lg font-bold text-primary-dark group-hover:text-primary transition-colors mb-2">{person.name}</h3>
-                                            <p className="text-gray-600 font-semibold">{person.role}</p>
-                                        </div>
-                                    </ScrollReveal>
-                                ))}
-                            </div>
-
-                            {/* Guru */}
-                            <div>
-                                <h3 className="text-2xl font-bold text-center text-primary-dark mb-8">Guru Mata Pelajaran</h3>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-                                    {staff.filter(person => person.role !== 'Kepala Sekolah' && person.role !== 'Wakil Kurikulum').map((person, index) => (
-                                        <ScrollReveal key={person.id} delay={index * 100} direction="up">
-                                            <div className="text-center group">
-                                                <div className="relative mb-6 inline-block overflow-hidden rounded-full border-4 border-gray-100 w-40 h-40">
-                                                    <img
-                                                        src={person.image}
-                                                        alt={person.name}
-                                                        className="w-full h-full object-cover"
-                                                        style={{ objectPosition: 'center 20%' }}
-                                                    />
-                                                </div>
-                                                <h3 className="text-lg font-bold text-primary-dark group-hover:text-primary transition-colors mb-2">{person.name}</h3>
-                                                <p className="text-gray-500">{person.role}</p>
-                                            </div>
-                                        </ScrollReveal>
-                                    ))}
-                                </div>
                             </div>
                         </div>
                     </section>
                 </div>
 
-                {/* Article */}
+                {/* Article Modal */}
                 <ArticleModal
                     article={selectedArticle}
                     isOpen={isModalOpen}

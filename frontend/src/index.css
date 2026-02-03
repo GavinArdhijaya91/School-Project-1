@@ -47,11 +47,7 @@
   @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-accent;
 }
 
-/* membuat ulang button classes menggunakan apply untuk mencocokkan gaya sebelumnya jika diperlukan, 
-   atau kita bisa menggunakan kelas tailwind langsung di komponen.
-   Mari kita simpan mereka untuk kompatibilitas mundur dengan kode saya baru-baru ini. 
-*/
-
+/* Button classes */
 .btn {
   @apply inline-block px-5 py-2.5 rounded font-semibold cursor-pointer border-0 transition-colors duration-200;
 }
@@ -64,7 +60,6 @@
   @apply border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-white;
 }
 
-/* Navbar hover animation - underline from left to right, exit to right */
 .nav-link::after {
   content: '';
   @apply absolute bottom-0 right-0 w-0 h-0.5 bg-white transition-all duration-300 ease-out;
@@ -72,11 +67,6 @@
 
 .nav-link:hover::after {
   @apply left-0 right-auto w-full;
-}
-
-/* Active state for navbar links */
-.nav-link.active::after {
-  @apply w-full;
 }
 
 @keyframes fadeInScale {
@@ -117,7 +107,7 @@
   @apply scale-95;
 }
 
-/* Biar Ga Kaku-Kaku Amat WKWKWK */
+
 .scroll-reveal {
   opacity: 0;
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -127,7 +117,6 @@
   opacity: 1;
 }
 
-/* Variasi */
 .scroll-reveal-up {
   transform: translateY(30px);
 }
@@ -235,7 +224,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile Menu Slide Down Animation */
+/* Mobile Menu Animations */
 @keyframes slideDown {
   0% {
     opacity: 0;
@@ -277,6 +266,7 @@
   transition: all 0.3s ease-in-out;
 }
 
+
 .cursor {
   display: inline-block;
   margin-left: 2px;
@@ -290,4 +280,92 @@
 
 .cursor-hidden {
   opacity: 0;
+}
+
+.card-hover {
+  @apply transition-all duration-300 ease-out;
+}
+
+.card-hover:hover {
+  @apply -translate-y-2 shadow-2xl;
+}
+
+.card-glow:hover {
+  box-shadow: 0 20px 60px rgba(69, 90, 100, 0.3);
+}
+
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary;
+}
+
+
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+@media (max-width: 768px) {
+  .bg-fixed {
+    background-attachment: scroll !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+
+.gradient-text {
+  @apply bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
