@@ -5,6 +5,7 @@ const Testimonial = ({ testimonial }) => {
     const { name, role, image, content, rating } = testimonial;
 
     return (
+        <React.Fragment>
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="flex items-center gap-4 mb-4">
                 <div className="w-16 h-16 rounded-full overflow-hidden bg-gradient-to-br from-primary to-primary-light flex-shrink-0">
@@ -43,6 +44,7 @@ const Testimonial = ({ testimonial }) => {
                 </p>
             </div>
         </div>
+        </React.Fragment>
     );
 };
 

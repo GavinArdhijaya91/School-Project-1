@@ -18,6 +18,7 @@ const BackToTop = () => {
     };
 
     return (
+        <React.Fragment>
         <button
             onClick={scrollToTop}
             className={`fixed bottom-8 right-8 z-50 p-4 rounded-full bg-primary dark:bg-primary-light text-white shadow-lg hover:shadow-xl transition-all duration-300 interactive-element ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16 pointer-events-none'
@@ -26,6 +27,7 @@ const BackToTop = () => {
         >
             <ChevronUp size={24} />
         </button>
+        </React.Fragment>
     );
 };
 

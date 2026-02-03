@@ -65,11 +65,32 @@ const ArticleModal = ({ article, isOpen, onClose }) => {
                                 </div>
                             )}
 
+                               {article.excerpt && (
+                                <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border-l-4 border-primary dark:border-primary-light">
+                                    <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed">
+                                        {article.excerpt}
+                                    </p>
+                                </div>
+                            )}
+
                             <div className="prose dark:prose-invert max-w-none">
                                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
                                     {article.content}
                                 </p>
                             </div>
+
+                            {article.author && (
+                                <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                        <span className="font-semibold">Penulis:</span>
+                                        <span>{article.author}</span>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
                         {/* Footer dengan tombol bagikan */}

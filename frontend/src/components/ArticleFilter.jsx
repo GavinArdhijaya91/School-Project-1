@@ -2,6 +2,7 @@ import React from 'react';
 
 const ArticleFilter = ({ categories, activeCategory, onFilterChange }) => {
     return (
+        <React.Fragment>
         <div className="flex flex-wrap justify-center gap-3 mb-8">
             <button
                 onClick={() => onFilterChange('all')}
@@ -30,6 +31,7 @@ const ArticleFilter = ({ categories, activeCategory, onFilterChange }) => {
                 </button>
             ))}
         </div>
+        </React.Fragment>
     );
 };
 

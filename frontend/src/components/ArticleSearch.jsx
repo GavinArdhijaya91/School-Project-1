@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useState as useReactState } from 'react';
 
 const ArticleSearch = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -18,6 +17,7 @@ const ArticleSearch = ({ onSearch }) => {
     };
 
     return (
+        <React.Fragment>
         <div className="relative max-w-md mx-auto mb-8">
             <input
                 type="text"
@@ -53,6 +53,7 @@ const ArticleSearch = ({ onSearch }) => {
                 </button>
             )}
         </div>
+        </React.Fragment>
     );
 };
 

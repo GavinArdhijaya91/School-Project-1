@@ -82,6 +82,8 @@ const Home = () => {
             date: '30 Des 2025',
             category: 'prestasi',
             excerpt: 'Siswa kami berhasil meraih medali emas dalam kompetisi tingkat nasional...',
+            highlightedWords: 'Siswa kami',
+            author: 'Drs. H. Ahmad Fauzi',
             image: '../resources/artikel-image/olimpiade-sains.jpg',
             content: `SMA Negeri 1 Jelita kembali mengukir prestasi membanggakan di ajang Olimpiade Sains Nasional (OSN) 2025. Tim siswa kami berhasil meraih medali emas dalam kategori Biologi dan medali perak dalam kategori Fisika.
                     Prestasi gemilang ini diraih oleh Ahmad Rizki (kelas XII MIPA 1) yang berhasil meraih medali emas dalam bidang Biologi setelah melalui kompetisi ketat dengan peserta dari seluruh Indonesia. Sementara itu, Siti Nurhaliza (kelas XI MIPA 2) berhasil meraih medali perak dalam bidang Fisika.
@@ -94,6 +96,8 @@ const Home = () => {
             date: '28 Nov 2025',
             category: 'informasi',
             excerpt: 'Informasi lengkap mengenai jadwal dan persyaratan PPDB tahun ajaran ini...',
+            highlightedWords: 'Informasi lengkap',
+            author: 'Siti Aminah, S.Pd',
             image: '../resources/artikel-image/ppdb.jpg',
             content: `SMA Negeri 1 Jelita membuka pendaftaran Penerimaan Peserta Didik Baru (PPDB) untuk tahun ajaran 2026/2027. Pendaftaran akan dibuka mulai tanggal 1 Januari 2026 hingga 15 Januari 2026.
                     Jalur pendaftaran yang tersedia meliputi jalur prestasi, jalur zonasi, dan jalur afirmasi. Untuk jalur prestasi, calon siswa dapat mendaftar dengan membawa sertifikat prestasi akademik atau non-akademik tingkat kabupaten/kota atau lebih tinggi.
@@ -107,6 +111,8 @@ const Home = () => {
             date: '10 Okt 2025',
             category: 'kegiatan',
             excerpt: 'OSIS mengadakan bakti sosial ke panti asuhan sebagai bentuk kepedulian...',
+            highlightedWords: 'OSIS mengadakan',
+            author: 'Farhan Maulana',
             image: '../resources/artikel-image/bakti-sosial.jpg',
             content: `Organisasi Siswa Intra Sekolah (OSIS) SMA Negeri 1 Jelita mengadakan kegiatan bakti sosial ke Panti Asuhan Kasih Sayang pada hari Minggu, 8 Oktober 2025. Kegiatan ini diikuti oleh 50 siswa pengurus OSIS dan anggota MPK.
                     Dalam kegiatan ini, para siswa membawa berbagai bantuan berupa sembako, pakaian layak pakai, alat tulis, dan buku-buku pelajaran untuk anak-anak panti asuhan. Selain itu, para siswa juga mengadakan kegiatan bersama seperti bermain games, menyanyi, dan berbagi cerita dengan adik-adik di panti.
@@ -119,6 +125,8 @@ const Home = () => {
             date: '05 Okt 2025',
             category: 'kegiatan',
             excerpt: 'Mengembangkan kreativitas siswa melalui teknologi robotika terkini...',
+            highlightedWords: 'Mengembangkan kreativitas',
+            author: 'Budi Santoso, M.Kom',
             image: '../resources/artikel-image/workshop-robotik.jpg',
             content: `SMA Negeri 1 Jelita mengadakan Workshop Robotik yang diikuti oleh 40 siswa dari kelas X dan XI jurusan MIPA. Workshop ini berlangsung selama tiga hari, dari tanggal 3-5 Oktober 2025, di Laboratorium Komputer sekolah.
                     Workshop ini menghadirkan instruktur profesional dari Komunitas Robotika Indonesia yang membimbing siswa dalam merancang, merakit, dan memprogram robot sederhana. Para siswa belajar tentang dasar-dasar elektronika, pemrograman Arduino, dan mekanika robot.
@@ -131,6 +139,8 @@ const Home = () => {
             date: '01 Okt 2025',
             category: 'kegiatan',
             excerpt: 'Meningkatkan kesadaran akan pentingnya lingkungan belajar yang bersih...',
+            highlightedWords: 'Meningkatkan kesadaran',
+            author: 'Rina Sari, S.Pd',
             image: '../resources/artikel-image/lomba-kebersihan.jpg',
             content: `Dalam rangka memperingati Hari Kesehatan Nasional, SMA Negeri 1 Jelita mengadakan Lomba Kebersihan Kelas yang diikuti oleh seluruh kelas dari tingkat X hingga XII. Lomba ini berlangsung selama satu minggu penuh dengan penilaian yang dilakukan setiap hari.
                     Kriteria penilaian meliputi kebersihan lantai, kerapian meja dan kursi, dekorasi kelas, pengelolaan sampah, dan kreativitas dalam menata ruang kelas. Tim juri yang terdiri dari guru dan perwakilan siswa melakukan inspeksi mendadak untuk memastikan kebersihan terjaga secara konsisten.
@@ -143,6 +153,8 @@ const Home = () => {
             date: '28 Sep 2025',
             category: 'prestasi',
             excerpt: 'Mempersiapkan siswa kelas XII untuk melanjutkan ke jenjang pendidikan tinggi...',
+            highlightedWords: 'Mempersiapkan siswa',
+            author: 'Ratna Dewi, S.Mat',
             image: '../resources/artikel-image/seminar-pt.jpg',
             content: `SMA Negeri 1 Jelita mengadakan Seminar Perguruan Tinggi yang dihadiri oleh seluruh siswa kelas XII. Acara ini menghadirkan perwakilan dari berbagai universitas ternama di Indonesia seperti UI, ITB, UGM, dan ITS.
                     Seminar yang berlangsung di Aula sekolah ini memberikan informasi lengkap tentang jalur masuk perguruan tinggi, program studi yang tersedia, beasiswa yang ditawarkan, dan tips sukses dalam menghadapi ujian masuk perguruan tinggi.
@@ -326,10 +338,10 @@ const Home = () => {
                         </div>
                     </section>
 
-                     {/* Bagian Kumpulan Galeri */}
+                    {/* Bagian Kumpulan Galeri */}
                     <section className="py-16 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
                         <div className="container mx-auto px-4">
-                            <h2 className="section-title" style={{color: 'white'}}>Galeri Sekolah</h2>
+                            <h2 className="section-title" style={{ color: 'white' }}>Galeri Sekolah</h2>
                             <p className="text-center text-white-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
                                 Lihat fasilitas dan kegiatan di SMA Negeri 1 Jelita
                             </p>
@@ -421,14 +433,24 @@ const Home = () => {
                                                         }}
                                                     />
                                                 </div>
+                                                
                                                 <div className="p-6 flex-1 flex flex-col">
+                                                    
                                                     <span className="text-sm text-gray-500 dark:text-gray-400 block mb-2">{article.date}</span>
                                                     <h2 className="text-xl font-bold mb-3 text-primary-dark dark:text-white">{article.title}</h2>
                                                     <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1">{article.excerpt}</p>
+                                                    {article.author && (
+                                                        <div className="flex items-center gap-2 mx-2 mb-7 text-sm text-gray-500 dark:text-gray-400 mt-2 top-0">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                                <circle cx="12" cy="7" r="4"></circle>
+                                                            </svg>
+                                                            <span className="italic">Penulis: {article.author}</span>
+                                                        </div>
+                                                    )}
                                                     <button
                                                         onClick={() => handleOpenArticle(article)}
-                                                        className="text-primary dark:text-primary-light font-semibold hover:text-primary-dark dark:hover:text-accent interactive-element"
-                                                    >
+                                                        className="text-primary dark:text-primary-light font-semibold hover:text-primary-dark dark:hover:text-accent interactive-element mb-2">
                                                         Baca Selengkapnya &rarr;
                                                     </button>
                                                 </div>
@@ -448,7 +470,7 @@ const Home = () => {
                     {/* Bagian Testimoni */}
                     <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
                         <div className="container mx-auto px-4">
-                            <h2 className="section-title" style={{color: 'white'}}>Testimoni</h2>
+                            <h2 className="section-title" style={{ color: 'white' }}>Testimoni</h2>
                             <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
                                 Apa kata mereka tentang SMA Negeri 1 Jelita
                             </p>
@@ -465,7 +487,7 @@ const Home = () => {
                     {/* Bagian Kontak */}
                     <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
                         <div className="container mx-auto px-4">
-                            <h2 className="section-title" style={{color: 'white'}}>Hubungi Kami</h2>
+                            <h2 className="section-title" style={{ color: 'white' }}>Hubungi Kami</h2>
                             <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
                                 Ada pertanyaan? Jangan ragu untuk menghubungi kami
                             </p>
@@ -486,7 +508,7 @@ const Home = () => {
                         <div className="container mx-auto px-4">
                             {/* Akademik */}
                             <div className="mb-20">
-                                <h2 className="section-title" style={{color: 'white'}}>Program Akademik</h2>
+                                <h2 className="section-title" style={{ color: 'white' }}>Program Akademik</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                     {academics.map((prog, index) => (
                                         <ScrollReveal key={prog.id} delay={index * 150} direction="up">
@@ -501,7 +523,7 @@ const Home = () => {
 
                             {/* Ekstrakurikuler */}
                             <div>
-                                <h2 className="section-title" style={{color: 'white'}}>Ekstrakurikuler</h2>
+                                <h2 className="section-title" style={{ color: 'white' }}>Ekstrakurikuler</h2>
                                 <p className="text-center text-gray-600 dark:text-gray-400 mb-10">Wadah pengembangan bakat dan minat siswa di luar jam pelajaran.</p>
                                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                                     {extracurriculars.map((ex, index) => (
@@ -522,7 +544,7 @@ const Home = () => {
                     {/* Bagian Staf Pengajar */}
                     <section id="staff" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
                         <div className="container mx-auto px-4">
-                            <h2 className="section-title" style={{color: 'white'}}>Staf Pengajar</h2>
+                            <h2 className="section-title" style={{ color: 'white' }}>Staf Pengajar</h2>
                             <p className="text-center text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">Tenaga pendidik profesional dan berpengalaman yang siap membimbing siswa.</p>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                                 {staff.map((staffMember, index) => (

@@ -45,7 +45,7 @@ const ContactForm = () => {
             ...prev,
             [name]: value
         }));
-        // Clear error when user starts typing
+        
         if (errors[name]) {
             setErrors(prev => ({
                 ...prev,
@@ -64,7 +64,7 @@ const ContactForm = () => {
         setIsSubmitting(true);
         setSubmitStatus(null);
 
-        // Simulate API call
+  
         try {
             await new Promise(resolve => setTimeout(resolve, 1500));
 
@@ -77,7 +77,6 @@ const ContactForm = () => {
                 message: ''
             });
 
-            // Clear success message after 5 seconds
             setTimeout(() => setSubmitStatus(null), 5000);
         } catch (error) {
             setSubmitStatus('error');
@@ -87,10 +86,11 @@ const ContactForm = () => {
     };
 
     return (
+        <React.Fragment>
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 transition-colors duration-300">
             <h3 className="text-2xl font-bold text-primary-dark dark:text-white mb-6">Hubungi Kami</h3>
 
-            {/* Contact Info */}
+            {/* Info Kontak */}
             <div className="mb-8 space-y-4">
                 <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                     <MapPin size={20} className="text-primary dark:text-primary-light flex-shrink-0" />
@@ -106,7 +106,7 @@ const ContactForm = () => {
                 </div>
             </div>
 
-            {/* Form */}
+            {/* Formulir */}
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -219,6 +219,7 @@ const ContactForm = () => {
                 </button>
             </form>
         </div>
+        </React.Fragment>
     );
 };
 

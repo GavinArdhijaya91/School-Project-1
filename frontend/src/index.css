@@ -369,3 +369,30 @@ textarea:focus-visible {
 .animate-pulse-slow {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+body:has([class*="admin"]) *,
+body:has([href*="/admin"]) * {
+  cursor: auto !important;
+}
+
+body:has([class*="admin"]) .cursor-follower,
+body:has([href*="/admin"]) .cursor-follower {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+body:has([class*="admin"]) input,
+body:has([class*="admin"]) textarea,
+body:has([href*="/admin"]) input,
+body:has([href*="/admin"]) textarea {
+  cursor: text !important;
+}
+
+body:has([class*="admin"]) button,
+body:has([class*="admin"]) a,
+body:has([class*="admin"]) select,
+body:has([href*="/admin"]) button,
+body:has([href*="/admin"]) a,
+body:has([href*="/admin"]) select {
+  cursor: pointer !important;
+}
