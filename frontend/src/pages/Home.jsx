@@ -433,9 +433,9 @@ const Home = () => {
                                                         }}
                                                     />
                                                 </div>
-                                                
+
                                                 <div className="p-6 flex-1 flex flex-col">
-                                                    
+
                                                     <span className="text-sm text-gray-500 dark:text-gray-400 block mb-2">{article.date}</span>
                                                     <h2 className="text-xl font-bold mb-3 text-primary-dark dark:text-white">{article.title}</h2>
                                                     <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1">{article.excerpt}</p>
@@ -450,7 +450,7 @@ const Home = () => {
                                                     )}
                                                     <button
                                                         onClick={() => handleOpenArticle(article)}
-                                                        className="text-primary dark:text-primary-light font-semibold hover:text-primary-dark dark:hover:text-accent interactive-element mb-2">
+                                                        className="text-primary dark:text-primary-light font-semibold hover:text-accent active:text-accent dark:hover:text-accent transition-colors mb-2">
                                                         Baca Selengkapnya &rarr;
                                                     </button>
                                                 </div>
@@ -528,8 +528,8 @@ const Home = () => {
                                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                                     {extracurriculars.map((ex, index) => (
                                         <ScrollReveal key={ex.id} delay={index * 80} direction="up">
-                                            <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow text-center hover:bg-primary dark:hover:bg-primary-light hover:text-white transition-colors group cursor-pointer interactive-element">
-                                                <div className="mb-3 text-primary dark:text-primary-light group-hover:text-white inline-block">
+                                            <div className="bg-primary dark:bg-gray-700 p-6 rounded-lg shadow text-center text-white hover:bg-primary-dark dark:hover:bg-gray-600 transition-colors group cursor-pointer interactive-element">
+                                                <div className="mb-3 text-white dark:text-gray-300 group-hover:text-accent duration-300 inline-block">
                                                     {ex.icon}
                                                 </div>
                                                 <h4 className="font-semibold">{ex.title}</h4>
@@ -546,7 +546,7 @@ const Home = () => {
                         <div className="container mx-auto px-4">
                             <h2 className="section-title" style={{ color: 'white' }}>Staf Pengajar</h2>
                             <p className="text-center text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">Tenaga pendidik profesional dan berpengalaman yang siap membimbing siswa.</p>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
                                 {staff.map((staffMember, index) => (
                                     <ScrollReveal key={staffMember.id} delay={index * 100} direction="up">
                                         <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow text-center card-hover">

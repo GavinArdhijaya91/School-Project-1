@@ -73,11 +73,22 @@ const Login = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-black py-12 px-4 sm:px-6 lg:px-8">
             <style>{`
+            
+                body, html, #root, .min-h-screen, .min-h-screen * {
+                    cursor: auto !important;
+                }
                 .cursor-follower {
                     display: none !important;
                 }
                 input, textarea, button, select, a {
                     cursor: pointer !important;
+                }
+
+                form {
+                    cursor: auto !important;
+                }
+                html, * {
+                    cursor: auto !important;
                 }
                 input[type="text"], input[type="email"], input[type="password"], input[type="number"], textarea {
                     cursor: text !important;

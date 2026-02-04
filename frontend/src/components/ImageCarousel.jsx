@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import './ImageCarousel.css';
 
 const ImageCarousel = ({ images }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -88,9 +89,9 @@ const ImageCarousel = ({ images }) => {
                         <button
                             key={index}
                             onClick={() => goToSlide(index)}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
-                                    ? 'bg-white w-8'
-                                    : 'bg-white/50 hover:bg-white/75'
+                            className={`carousel-pagination-dot rounded-full transition-all duration-300 ${index === currentIndex
+                                ? 'bg-white active'
+                                : 'bg-white/50 hover:bg-white/75'
                                 }`}
                             aria-label={`Go to slide ${index + 1}`}
                         />

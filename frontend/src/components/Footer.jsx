@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, ChevronUp } from 'lucide-react';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -35,7 +35,7 @@ const Footer = () => {
 
     return (
         <React.Fragment>
-            <footer className="bg-primary-dark dark:bg-gray-950 text-white pt-12 pb-6 transition-colors duration-300">
+            <footer className="bg-primary-dark dark:bg-gray-950 text-white pt-12 pb-0 transition-colors duration-300">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                         {/* About Section */}
@@ -111,9 +111,19 @@ const Footer = () => {
                             <p className="text-gray-400 dark:text-gray-500 text-sm text-center md:text-left">
                                 &copy; {currentYear} SMA Negeri 1 Jelita. All rights reserved.
                             </p>
+
+
                             <p className="text-gray-400 dark:text-gray-500 text-sm text-center md:text-right">
                                 Made with ❤️ for Education
                             </p>
+
+                            <button
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                className="flex items-center gap-2 text-sm text-white dark:text-white hover:text-accent dark:hover:text-accent transition-colors interactive-element text-white p-2 mb-8"
+                            >
+                                <span>Kembali ke Atas</span>
+                                <ChevronUp size={16} />
+                            </button>
                         </div>
                     </div>
                 </div>

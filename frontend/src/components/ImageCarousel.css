@@ -1,0 +1,28 @@
+/* Base styles for pagination dots */
+.carousel-pagination-dot {
+    transition: all 0.3s ease-in-out;
+    height: 8px;
+    width: 8px;
+}
+
+.carousel-pagination-dot.active {
+    width: 32px;
+    background-color: white;
+}
+
+/* Mobile adjustments */
+@media (max-width: 968px) {
+    .carousel-pagination-dot {
+        height: 4px !important;
+        width: 4px !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        margin: 0 2px !important;
+        border: none !important;
+    }
+
+    .carousel-pagination-dot.active {
+        width: 12px !important;
+    }
+}

@@ -4,6 +4,17 @@ import { X, Share2, Copy, Check } from 'lucide-react';
 const ArticleModal = ({ article, isOpen, onClose }) => {
     const [copied, setCopied] = useState(false);
 
+    React.useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('modal-open');
+        } else {
+            document.body.classList.remove('modal-open');
+        }
+        return () => {
+            document.body.classList.remove('modal-open');
+        };
+    }, [isOpen]);
+
     if (!article) return null;
 
     const shareUrl = window.location.href;
@@ -34,8 +45,8 @@ const ArticleModal = ({ article, isOpen, onClose }) => {
     return (
         <>
             {isOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 overlay-fade-in">
-                    <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden ${isOpen ? 'modal-zoom-in' : 'modal-zoom-out'}`}>
+                <div className="fixed inset-0 z-50 flex items-center justify-center px-6 py-10 md:py-5 md:px-3 bg-black bg-opacity-50 overlay-fade-in">
+                    <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden ${isOpen ? 'modal-zoom-in' : 'modal-zoom-out'}`}>
                         {/* Header */}
                         <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex justify-between items-center z-10">
                             <h2 className="text-2xl font-bold text-primary-dark dark:text-white">{article.title}</h2>
@@ -49,7 +60,7 @@ const ArticleModal = ({ article, isOpen, onClose }) => {
                         </div>
 
                         {/* Content */}
-                        <div className="overflow-y-auto max-h-[calc(90vh-140px)] px-6 py-6">
+                        <div className="flex-1 overflow-y-auto px-6 py-6">
                             <div className="mb-4 text-sm text-gray-500 dark:text-gray-400">{article.date}</div>
 
                             {article.image && (
@@ -65,7 +76,7 @@ const ArticleModal = ({ article, isOpen, onClose }) => {
                                 </div>
                             )}
 
-                               {article.excerpt && (
+                            {article.excerpt && (
                                 <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border-l-4 border-primary dark:border-primary-light">
                                     <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed">
                                         {article.excerpt}
@@ -94,16 +105,16 @@ const ArticleModal = ({ article, isOpen, onClose }) => {
                         </div>
 
                         {/* Footer dengan tombol bagikan */}
-                        <div className="sticky bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+                        <div className="sticky bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-4 py-3 md:px-6 md:py-4">
                             <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                                <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hidden md:flex">
                                     <Share2 size={20} />
                                     <span className="font-semibold">Bagikan:</span>
                                 </div>
-                                <div className="flex gap-2">
+                                <div className="flex gap-2 w-full md:w-auto justify-between md:justify-start">
                                     <button
                                         onClick={() => handleShare('whatsapp')}
-                                        className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors flex items-center gap-2"
+                                        className="p-2 md:px-4 md:py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 flex-1 md:flex-none"
                                         title="Share via WhatsApp"
                                     >
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -112,7 +123,7 @@ const ArticleModal = ({ article, isOpen, onClose }) => {
                                     </button>
                                     <button
                                         onClick={() => handleShare('facebook')}
-                                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center gap-2"
+                                        className="p-2 md:px-4 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2 flex-1 md:flex-none"
                                         title="Share via Facebook"
                                     >
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -121,7 +132,7 @@ const ArticleModal = ({ article, isOpen, onClose }) => {
                                     </button>
                                     <button
                                         onClick={() => handleShare('twitter')}
-                                        className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg transition-colors flex items-center gap-2"
+                                        className="p-2 md:px-4 md:py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 flex-1 md:flex-none"
                                         title="Share via Twitter"
                                     >
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -130,11 +141,11 @@ const ArticleModal = ({ article, isOpen, onClose }) => {
                                     </button>
                                     <button
                                         onClick={handleCopyLink}
-                                        className="px-4 py-2 bg-gray-600 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 text-white rounded-lg transition-colors flex items-center gap-2"
+                                        className="px-3 py-2 md:px-4 md:py-2 bg-gray-600 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 flex-1 md:flex-none"
                                         title="Copy link"
                                     >
                                         {copied ? <Check size={20} /> : <Copy size={20} />}
-                                        <span>{copied ? 'Tersalin!' : 'Salin'}</span>
+                                        <span className="text-sm md:text-base">{copied ? 'Tersalin' : 'Salin'}</span>
                                     </button>
                                 </div>
                             </div>

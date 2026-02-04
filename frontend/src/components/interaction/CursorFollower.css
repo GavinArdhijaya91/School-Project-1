@@ -1,101 +1,88 @@
-.cursor-follower {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.cursor-follower.visible {
-    opacity: 1;
-}
-
-.cursor-light {
-    width: 2cm;
-    height: 2cm;
-    border-radius: 50%;
-    background: radial-gradient(circle at center,
-            rgba(255, 255, 255, 0.9) 0%,
-            rgba(255, 255, 255, 0.85) 5%,
-            rgba(255, 255, 255, 0.75) 10%,
-            rgba(255, 255, 255, 0.65) 10%,
-            rgba(255, 255, 255, 0.55) 10%,
-            rgba(255, 255, 255, 0.45) 10%,
-            rgba(255, 255, 255, 0.38) 10%);
-    /* rgba(255, 255, 255, 0.32) 35%,
-            rgba(255, 255, 255, 0.26) 40%,
-            rgba(255, 255, 255, 0.21) 45%,
-            rgba(255, 255, 255, 0.17) 50%,
-            rgba(255, 255, 255, 0.13) 55%,
-            rgba(255, 255, 255, 0.10) 60%,
-            rgba(255, 255, 255, 0.08) 65%,
-            rgba(255, 255, 255, 0.06) 70%,
-            rgba(255, 255, 255, 0.04) 75%,
-            rgba(255, 255, 255, 0.03) 80%,
-            rgba(255, 255, 255, 0.02) 85%,
-            rgba(255, 255, 255, 0.01) 90%,
-            rgba(255, 255, 255, 0) 100%); */
-    box-shadow:
-        0 0 30px rgba(255, 255, 255, 0.5),
-        0 0 50px rgba(255, 255, 255, 0.3),
-        0 0 70px rgba(255, 255, 255, 0.15),
-        0 0 90px rgba(255, 255, 255, 0.08);
-    animation: pulse 2s ease-in-out infinite;
-    filter: blur(1px);
-}
-
-@keyframes pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.8;
+@media (min-width: 768px) {
+    .cursor-follower {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
-    50% {
-        transform: scale(1.05);
+    .cursor-follower.visible {
         opacity: 1;
     }
-}
 
+    .cursor-light {
+        width: 2cm;
+        height: 2cm;
+        border-radius: 50%;
+        background: radial-gradient(circle at center,
+                rgba(255, 255, 255, 0.9) 0%,
+                rgba(255, 255, 255, 0.85) 5%,
+                rgba(255, 255, 255, 0.75) 10%,
+                rgba(255, 255, 255, 0.65) 10%,
+                rgba(255, 255, 255, 0.55) 10%,
+                rgba(255, 255, 255, 0.45) 10%,
+                rgba(255, 255, 255, 0.38) 10%);
+        box-shadow:
+            0 0 30px rgba(255, 255, 255, 0.5),
+            0 0 50px rgba(255, 255, 255, 0.3),
+            0 0 70px rgba(255, 255, 255, 0.15),
+            0 0 90px rgba(255, 255, 255, 0.08);
+        animation: pulse 2s ease-in-out infinite;
+        filter: blur(1px);
+    }
 
+    @keyframes pulse {
 
-* {
-    cursor: none !important;
-}
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
 
-body {
-    cursor: none !important;
-}
+        50% {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+    }
 
-a,
-button,
-input,
-textarea,
-select,
-img,
-div,
-span,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-ul,
-ol,
-nav,
-section,
-article,
-header,
-footer,
-main {
-    cursor: none !important;
-}
+    * {
+        cursor: none !important;
+    }
 
-*:hover {
-    cursor: none !important;
+    body {
+        cursor: none !important;
+    }
+
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    img,
+    div,
+    span,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    li,
+    ul,
+    ol,
+    nav,
+    section,
+    article,
+    header,
+    footer,
+    main {
+        cursor: none !important;
+    }
+
+    *:hover {
+        cursor: none !important;
+    }
 }

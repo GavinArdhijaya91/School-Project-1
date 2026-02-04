@@ -59,7 +59,7 @@ const Navbar = () => {
         <React.Fragment>
             <nav className="bg-primary text-white sticky top-0 z-50 shadow-md" style={{ padding: '0px' }}>
                 <div className="container mx-auto px-3 py-3 flex justify-between items-center">
-                    <div className="text-2xl font-bold">
+                    <div className="text-lg md:text-2xl font-bold">
                         <img src="../public/SMA Negeri 1 Jelita (2).png" alt="Logo SMA Negeri 1 Jelita" className="w-17 h-17 mr-1 inline-block justify-center align-center" />
                         <a href="#beranda" onClick={(e) => handleClick(e, '#beranda')} className="text-center justify-center mr-10 inline-block">
                             SMAN 1 JELITA
@@ -97,14 +97,14 @@ const Navbar = () => {
 
                 {/* Mobile Menu */}
                 {isOpen && (
-                    <div className="md:hidden bg-primary-dark mobile-menu mobile-menu-enter">
+                    <div className="md:hidden bg-primary-dark mobile-menu mobile-menu-enter absolute left-0 right-0 top-full shadow-lg">
                         <div className="flex flex-col space-y-4 px-4 py-6">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.id}
                                     href={link.path}
                                     onClick={(e) => handleClick(e, link.path)}
-                                    className={`relative nav-link hover:text-gray-200 transition-colors py-2 ${activeSection === link.id ? 'active text-accent' : ''
+                                    className={`relative nav-link hover:text-gray-200 transition-colors py-2 mobile-menu-item ${activeSection === link.id ? 'active text-accent' : ''
                                         }`}
                                 >
                                     {link.name}
